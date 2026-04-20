@@ -17,6 +17,7 @@ router.post('/create', authMiddleware, async (req, res) => {
     buyIn: buyIn || 1000
   };
   const room = roomManager.createRoom(req.userId, req.username, options);
+  room.addPlayer(req.userId, req.username);
   await run(
     'INSERT INTO rooms (id, password, owner_id, big_blind, status) VALUES (?, ?, ?, ?, ?)',
     [room.id, options.password, req.userId, options.bigBlind, 'waiting']
