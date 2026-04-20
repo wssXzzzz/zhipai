@@ -66,6 +66,7 @@ function renderGame() {
   renderCommunityCards();
   renderPotInfo();
   renderActions();
+  renderBotControls();
 }
 
 function renderPlayers() {
@@ -82,18 +83,80 @@ function renderPlayers() {
       cardsHtml = `<div class="player-cards">${renderCards(p.holeCards)}</div>`;
     } else if (p.folded) {
       cardsHtml = '<div class="player-cards">已弃牌</div>';
+    } else if (p.isBot) {
+      cardsHtml = '<div class="player-cards">🂠 🂠</div>';
     } else {
       cardsHtml = '<div class="player-cards">🂠 🂠</div>';
     }
 
     return `
       <div class="player-card ${activeClass} ${foldedClass}">
-        <div class="player-name">${p.username}${isMe ? ' (你)' : ''}</div>
+        <div class="player-name">${p.username}${isMe ? ' (你)' : ''}${p.isBot ? '<span class="bot-badge">BOT</span>' : ''}</div>
         <div class="player-chips">筹码: ${p.chips}</div>
         ${cardsHtml}
       </div>
     `;
   }).join('');
+}
+
+function renderBotControls() {
+  let container = document.getElementById('bot-controls');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'bot-controls';
+    container.style.cssText = 'text-align:center;margin:15px 0;';
+    const actionButtons = document.getElementById('action-buttons');
+    actionButtons.parentNode.insertBefore(container, actionButtons);
+  }
+
+  if (gameState.status !== 'waiting' || gameState.ownerId !== currentUser.id) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const playerCount = gameState.players.length;
+  if (playerCount >= 4) {
+    container.innerHTML = '<p style="color:#888;">房间已满</p>';
+    return;
+  }
+
+  container.innerHTML = `
+    <button onclick="addBot()" class="secondary" style="background:#8b5cf6;color:#fff;">+ 添加机器人</button>
+  `;
+}
+
+async function addBot() {
+  try {
+    const res = await fetch(`${API_BASE}/room/${roomId}/add-bot`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const data = await res.json();
+    if (res.ok) {
+      gameState = data.room;
+      renderGame();
+    } else {
+      alert(data.error);
+    }
+  } catch (err) {
+    console.error('Add bot failed');
+  }
+}
+
+async function removeBot(botId) {
+  try {
+    const res = await fetch(`${API_BASE}/room/${roomId}/remove-bot/${botId}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const data = await res.json();
+    if (res.ok) {
+      gameState = data.room;
+      renderGame();
+    }
+  } catch (err) {
+    console.error('Remove bot failed');
+  }
 }
 
 function renderCommunityCards() {

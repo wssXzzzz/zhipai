@@ -91,4 +91,31 @@ router.post('/:roomId/action', authMiddleware, (req, res) => {
   res.json({ room: room.getRoomState() });
 });
 
+router.post('/:roomId/add-bot', authMiddleware, (req, res) => {
+  const room = roomManager.getRoom(req.params.roomId);
+  if (!room) {
+    return res.status(404).json({ error: 'Room not found' });
+  }
+  if (room.ownerId !== req.userId) {
+    return res.status(403).json({ error: 'Only the owner can add bots' });
+  }
+  const result = room.addBot();
+  if (!result.success) {
+    return res.status(400).json({ error: result.message });
+  }
+  res.json({ room: room.getRoomState(), bot: { id: result.botId, name: result.botName } });
+});
+
+router.post('/:roomId/remove-bot/:botId', authMiddleware, (req, res) => {
+  const room = roomManager.getRoom(req.params.roomId);
+  if (!room) {
+    return res.status(404).json({ error: 'Room not found' });
+  }
+  if (room.ownerId !== req.userId) {
+    return res.status(403).json({ error: 'Only the owner can remove bots' });
+  }
+  room.removeBot(req.params.botId);
+  res.json({ room: room.getRoomState() });
+});
+
 module.exports = { router, setRoomManager };
