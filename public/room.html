@@ -3,40 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>德州扑克 - 游戏房间</title>
+  <title>🎴 德州扑克 - 游戏房间</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div id="game-section">
     <header>
-      <h1>房间: <span id="room-id"></span></h1>
-      <button onclick="leaveRoom()" class="secondary">返回大厅</button>
+      <h1>🎴 房间: <span id="room-id"></span></h1>
+      <button onclick="leaveRoom()" class="secondary">🚪 返回大厅</button>
     </header>
 
     <div class="game-container">
       <div class="players-area" id="players-area"></div>
 
       <div class="community-cards">
-        <div class="cards-label">公共牌</div>
+        <div class="cards-label">🌟 公共牌</div>
         <div id="community-cards" class="cards-row"></div>
       </div>
 
       <div class="pot-info">
-        <span>底池: <span id="pot-amount">0</span></span>
-        <span>当前下注: <span id="current-bet">0</span></span>
+        <span>💰 底池: <span id="pot-amount">0</span></span>
+        <span>📊 当前下注: <span id="current-bet">0</span></span>
       </div>
 
       <div class="action-buttons" id="action-buttons">
-        <button onclick="playerAction('fold')" class="action-btn fold">弃牌</button>
-        <button onclick="playerAction('check')" class="action-btn check">过牌</button>
-        <button onclick="playerAction('call')" class="action-btn call">跟注</button>
-        <button onclick="playerAction('raise')" class="action-btn raise">加注</button>
+        <button onclick="playerAction('fold')" class="action-btn fold">🚮 弃牌</button>
+        <button onclick="playerAction('check')" class="action-btn check">⏭️ 过牌</button>
+        <button onclick="playerAction('call')" class="action-btn call">👍 跟注</button>
+        <button onclick="playerAction('raise')" class="action-btn raise">📈 加注</button>
       </div>
 
       <div class="raise-controls hidden" id="raise-controls">
-        <input type="number" id="raise-amount" placeholder="加注金额" />
-        <button onclick="confirmRaise()">确认加注</button>
-        <button onclick="cancelRaise()" class="secondary">取消</button>
+        <input type="number" id="raise-amount" placeholder="💎 加注金额" />
+        <button onclick="confirmRaise()">✅ 确认</button>
+        <button onclick="cancelRaise()" class="secondary">❌ 取消</button>
       </div>
     </div>
 
