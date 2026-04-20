@@ -109,7 +109,7 @@ function renderBotControls() {
     actionButtons.parentNode.insertBefore(container, actionButtons);
   }
 
-  if (gameState.status !== 'waiting' || gameState.ownerId !== currentUser.id) {
+  if (gameState.status !== 'waiting' || String(gameState.ownerId) !== String(currentUser.id)) {
     container.innerHTML = '';
     return;
   }
@@ -180,7 +180,7 @@ function renderActions() {
     buttons.classList.add('hidden');
     controls.classList.add('hidden');
 
-    if (gameState.ownerId === currentUser.id && gs && gs.players?.length >= 2) {
+    if (String(gameState.ownerId) === String(currentUser.id) && gs && gs.players?.length >= 2) {
       buttons.classList.remove('hidden');
       buttons.innerHTML = `<button onclick="startGame()" class="action-btn raise">开始游戏</button>`;
     }
