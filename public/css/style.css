@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+  min-height: 100vh;
+  color: #fff;
+}
+
+.hidden { display: none !important; }
+
+#auth-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.auth-box {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.auth-box h1 {
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#login-form input {
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border: 2px solid #3d6b4a;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+}
+
+#login-form input:focus {
+  border-color: #ffd700;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1.1em;
+  background: #2d5a3d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: #3d7a4d;
+  transform: translateY(-2px);
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #3d6b4a;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+  color: #ffd700;
+}
+
+.user-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.lobby-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 30px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.create-room, .join-room, .room-list {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.create-room h2, .join-room h2, .room-list h2 {
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+.create-room input, .join-room input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #3d6b4a;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: block;
+}
+
+.room-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.room-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.room-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.room-item h3 {
+  color: #ffd700;
+  margin-bottom: 5px;
+}
+
+.room-item p {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.game-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.players-area {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.player-card {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 180px;
+  text-align: center;
+  border: 3px solid #3d6b4a;
+}
+
+.player-card.active {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.player-card.folded {
+  opacity: 0.5;
+}
+
+.player-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.player-chips {
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.player-cards {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.card {
+  width: 50px;
+  height: 70px;
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card.red { color: #e63946; }
+
+.community-cards {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.cards-label {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+.cards-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pot-info {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 20px 0;
+  color: #ffd700;
+}
+
+.pot-info span {
+  margin: 0 20px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.action-btn {
+  padding: 15px 30px;
+  font-size: 1.1em;
+}
+
+.action-btn.fold { background: #8b0000; }
+.action-btn.fold:hover { background: #a50000; }
+.action-btn.check { background: #4a4a4a; }
+.action-btn.call { background: #2d5a3d; }
+.action-btn.raise { background: #b8860b; }
+
+.raise-controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.raise-controls input {
+  padding: 10px;
+  font-size: 1.1em;
+  border: 2px solid #3d6b4a;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  margin-right: 10px;
+  width: 150px;
+}
+
+.game-message {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  color: #ffd700;
+}
+
+.player-hole-cards {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 12px;
+}

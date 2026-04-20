@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克 - 游戏大厅</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="auth-section">
+    <div class="auth-box">
+      <h1>德州扑克</h1>
+      <div id="login-form">
+        <input type="text" id="username" placeholder="用户名" />
+        <input type="password" id="password" placeholder="密码" />
+        <button onclick="login()">登录</button>
+        <button onclick="register()" class="secondary">注册</button>
+      </div>
+      <p id="auth-error" class="error"></p>
+    </div>
+  </div>
+
+  <div id="lobby-section" class="hidden">
+    <header>
+      <h1>德州扑克大厅</h1>
+      <div class="user-info">
+        <span id="user-display"></span>
+        <button onclick="logout()" class="secondary">退出</button>
+      </div>
+    </header>
+
+    <div class="lobby-content">
+      <div class="create-room">
+        <h2>创建房间</h2>
+        <input type="password" id="room-password" placeholder="房间密码（可选）" />
+        <input type="number" id="big-blind" placeholder="大盲注" value="10" min="1" />
+        <input type="number" id="buy-in" placeholder="买入金额" value="1000" min="100" />
+        <button onclick="createRoom()">创建房间</button>
+      </div>
+
+      <div class="join-room">
+        <h2>加入房间</h2>
+        <input type="text" id="join-room-id" placeholder="房间号" />
+        <input type="password" id="join-room-password" placeholder="密码（可选）" />
+        <button onclick="joinRoom()">加入</button>
+      </div>
+
+      <div class="room-list">
+        <h2>等待中的房间</h2>
+        <div id="rooms-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
