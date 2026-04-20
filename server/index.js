@@ -7,7 +7,7 @@ const { RoomManager } = require('./game/Room');
 const authRoutes = require('./routes/auth');
 const { router: roomRoutes, setRoomManager } = require('./routes/room');
 
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 12315;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {

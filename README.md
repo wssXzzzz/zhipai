@@ -30,7 +30,7 @@ npm start
 node server/index.js
 ```
 
-服务器启动后，打开浏览器访问：**http://localhost:8888**
+服务器启动后，打开浏览器访问：**http://localhost:12315**
 
 ## 退出
 
@@ -66,6 +66,7 @@ zhipai/
 ├── server/
 │   ├── index.js           # 服务端入口
 │   ├── game/
+│   │   ├── BotAI.js       # 机器人AI
 │   │   ├── CardDeck.js    # 牌组管理
 │   │   ├── PokerGame.js   # 德州扑克核心规则
 │   │   └── Room.js        # 房间管理
